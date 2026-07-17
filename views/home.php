@@ -189,7 +189,7 @@
                                 </span>
                             </td>
                             <td class="actions">
-                                <button class="btn btn-warning btn-sm" onclick='openEditModal(<?= json_encode($sched) ?>)'>Edit</button>
+                                <button class="btn btn-warning btn-sm" onclick="openEditModal(<?= htmlspecialchars(json_encode($sched), ENT_QUOTES, 'UTF-8') ?>)">Edit</button>
                                 <a href="index.php?url=delete&id=<?= $sched['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus jadwal ini?')">Hapus</a>
                             </td>
                         </tr>
