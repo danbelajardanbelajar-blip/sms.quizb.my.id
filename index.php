@@ -14,5 +14,6 @@ $router->add('edit', 'HomeController', 'edit');
 $router->add('delete', 'HomeController', 'delete');
 $router->add('api/schedules', 'ApiController', 'getSchedules');
 $router->add('api/upload', 'ApiController', 'uploadSchedules');
+$router->add('api/add-log', 'ApiController', 'addLog');
 
 $router->dispatch($url);
