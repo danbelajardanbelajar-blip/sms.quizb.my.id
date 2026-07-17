@@ -224,7 +224,7 @@
                 </div>
                 <div class="form-group">
                     <label>Pesan</label>
-                    <textarea name="message" rows="3" required placeholder="Isi pesan SMS..."></textarea>
+                    <textarea name="message" rows="6" required placeholder="Isi pesan SMS..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Waktu Pengiriman (Waktu Lokal)</label>
@@ -263,7 +263,7 @@
                 </div>
                 <div class="form-group">
                     <label>Pesan</label>
-                    <textarea name="message" id="edit_message" rows="3" required></textarea>
+                    <textarea name="message" id="edit_message" rows="6" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>Waktu Pengiriman (Waktu Lokal)</label>
