@@ -175,7 +175,7 @@
                         <tr>
                             <td><strong><?= htmlspecialchars($sched['name'] ?? '-') ?></strong></td>
                             <td><?= htmlspecialchars($sched['phoneNumber']) ?></td>
-                            <td><?= htmlspecialchars($sched['message']) ?></td>
+                            <td title="<?= htmlspecialchars($sched['message']) ?>"><?= htmlspecialchars(mb_strimwidth($sched['message'], 0, 50, "...")) ?></td>
                             <td>
                                 <?php 
                                     // Convert epoch ms to readable format (approximate to local server time)
