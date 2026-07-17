@@ -2,9 +2,13 @@
 class HomeController {
     public function index() {
         $model = new ScheduleModel();
-        $schedules = $model->getAllSchedules();
+        require_once __DIR__ . '/../models/LogModel.php';
+        $logModel = new LogModel();
         
-        require_once 'views/home.php';
+        $schedules = $model->getAllSchedules();
+        $logs = $logModel->getAllLogs();
+        
+        require __DIR__ . '/../views/home.php';
     }
 
     public function add() {

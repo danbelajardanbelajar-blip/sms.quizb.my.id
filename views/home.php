@@ -206,9 +206,58 @@
                 </table>
             </div>
         </div>
-    </div>
 
-    <!-- Modal Tambah -->
+        <div class="panel">
+            <h2>Riwayat Pengiriman (Logs)</h2>
+            <p style="color: #6b7280; font-size: 14px; margin-top: -10px; margin-bottom: 15px;">Melihat status pengiriman SMS langsung dari HP Android Anda.</p>
+            <div style="overflow-x: auto; max-height: 400px; overflow-y: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Waktu (Lokal)</th>
+                            <th>Nomor HP</th>
+                            <th>Status</th>
+                            <th>Pesan Info/Error</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (isset($logs) && is_array($logs) && !empty($logs)): ?>
+                            <?php foreach ($logs as $log): ?>
+                            <tr>
+                                <td>
+                                    <?php 
+                                        $epochLog = (int)($log['timeInMillis'] / 1000);
+                                        echo date("d M Y H:i:s", $epochLog);
+                                    ?>
+                                </td>
+                                <td><?= htmlspecialchars($log['phoneNumber']) ?></td>
+                                <td>
+                                    <?php if ($log['status'] === 'SUCCESS'): ?>
+                                        <span style="background: #10b981; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">BERHASIL</span>
+                                    <?php else: ?>
+                                        <span style="background: #ef4444; color: white; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">GAGAL</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <span style="font-size: 13px; color: <?= $log['status'] === 'SUCCESS' ? '#059669' : '#dc2626' ?>;">
+                                        <?= htmlspecialchars($log['errorMessage']) ?>
+                                    </span>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4" class="empty-state">
+                                    <svg style="width:48px;height:48px;margin-bottom:10px;color:#cbd5e1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg><br>
+                                    Belum ada log pengiriman.
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div id="addModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('addModal')">&times;</span>

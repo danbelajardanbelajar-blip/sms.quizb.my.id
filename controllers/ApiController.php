@@ -48,4 +48,28 @@ class ApiController {
             echo json_encode(["status" => "error", "message" => "Method not allowed"]);
         }
     }
+    public function addLog() {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+        
+        $this->verifyApiKey();
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = file_get_contents('php://input');
+            $data = json_decode($input, true);
+            
+            if (is_array($data)) {
+                require_once __DIR__ . '/../models/LogModel.php';
+                $model = new LogModel();
+                $model->addLog($data);
+                echo json_encode(["status" => "success", "message" => "Log added successfully"]);
+            } else {
+                http_response_code(400);
+                echo json_encode(["status" => "error", "message" => "Invalid JSON"]);
+            }
+        } else {
+            http_response_code(405);
+            echo json_encode(["status" => "error", "message" => "Method not allowed"]);
+        }
+    }
 }
